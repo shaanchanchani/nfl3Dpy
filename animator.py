@@ -181,7 +181,7 @@ class NFLPlayAnimator:
                 if pd.isna(team):
                     continue
                     
-                team_data = frame_data[frame_data.club == team].copy()
+                team_data = frame_data[(frame_data.club == team) & (frame_data.displayName != 'football')].copy()
                 team_data['z'] = 1
                 hover_text = [
                     f"Name: {player.displayName}<br>"
@@ -214,7 +214,7 @@ class NFLPlayAnimator:
             sliders_dict["steps"].append({
                 "args": [
                     [frameId],
-                    {"frame": {"duration": 100, "redraw": True},
+                    {"frame": {"duration": 100, "redraw": False},
                      "mode": "immediate",
                      "transition": {"duration": 0}}
                 ],
